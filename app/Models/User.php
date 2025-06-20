@@ -18,6 +18,7 @@ class User extends Authenticatable
     const FIRST_NAME = 'first_name';
     const LAST_NAME = 'last_name';
     const GENDER = 'gender';
+    const PROFILE = 'profile';
     const EMAIL = 'email';
     const PASSWORD = 'password';
     const CREATED_AT = 'created_at';
@@ -34,6 +35,7 @@ class User extends Authenticatable
         self::LAST_NAME,
         self::EMAIL,
         self::GENDER,
+        self::PROFILE,
         self::PASSWORD,
     ];
 
@@ -58,5 +60,9 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function fullName(): string{
+        return ($this->gender == 'Male' ? 'Mr.' : 'Ms.').$this->first_name.' '.$this->lastName;
     }
 }
