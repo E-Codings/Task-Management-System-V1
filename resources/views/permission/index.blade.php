@@ -17,23 +17,17 @@
                                 </ul>
                             </div>
                             <div class="col-9 d-flex flex-wrap">
-                                <div class="form-check me-2">
-                                    <input
-                                        class="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="defaultCheck3"
-                                        checked="checked" />
-                                    <label class="form-check-label" for="defaultCheck3"> Checked </label>
-                                </div><div class="form-check me-2">
-                                    <input
-                                        class="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="defaultCheck3"
-                                        checked="checked" />
-                                    <label class="form-check-label" for="defaultCheck3"> Checked </label>
-                                </div>
+                               @foreach($permissions as $permission)
+                                    <div class="form-check me-2">
+                                        <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                value=""
+                                                id="{{$permission->name}}"
+                                                checked="checked"/>
+                                        <label class="form-check-label" for="{{$permission->name}}"> {{$permission->name}} </label>
+                                    </div>
+                               @endforeach
 
                             </div>
                         </div>

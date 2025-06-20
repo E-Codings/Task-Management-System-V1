@@ -9,6 +9,7 @@ Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login.submit');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/setup', [HomeController::class, 'setup'])->name('setup');
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
     Route::get('/change-password', [AuthenticationController::class, 'showChangePasswordForm'])->name('show-change-password');
