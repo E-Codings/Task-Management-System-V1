@@ -34,4 +34,9 @@ composer install
 # generate key in .env
 php artisan key:generate
 ```
+- Generate Admin User
+```bash
+# generate key in .env
+php artisan generateadmin:credential {username} {email} {password}
+```
 
