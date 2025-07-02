@@ -82,7 +82,7 @@
 
             <ul class="menu-inner py-1">
                 <!-- Dashboards -->
-                <li class="menu-item active">
+                <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon icon-base ri ri-home-smile-line"></i>
                         <div data-i18n="Dashboards">Dashboards</div>
@@ -105,6 +105,12 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="{{route('user.index')}}" class="menu-link">
+                        <i class="menu-icon icon-base ri ri-account-box-2-line"></i>
+                        <div>Users</div>
+                    </a>
                 </li>
             </ul>
         </aside>

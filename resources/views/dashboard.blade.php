@@ -51,7 +51,6 @@
                 </div>
             </div>
             <div class="col-12">
-                Hello World
                 <div class="card overflow-hidden">
                     <div class="table-responsive">
                         <table class="table table-sm">
