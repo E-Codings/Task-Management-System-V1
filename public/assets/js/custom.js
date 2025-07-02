@@ -36,3 +36,20 @@ function show_toast(type, message){
         $('.toast').removeClass('show');
     }, 5000)
 }
+
+$(document).on('click', '.open-modal', function(){
+    const url = $(this).data('url');
+    $('.btn-open-modal').click();
+    const title = $(this).data('modal-title');
+
+    $('#basicModal').find('.modal-title').text(title);
+    console.log($('#basicModal').find('.modal-title'));
+
+    $.ajax({
+        url,
+        success:function(res){
+            $('.modal-body').html(res)
+        }
+    });
+});
+

@@ -6,7 +6,7 @@
                 <div class="card overflow-hidden">
                     <div class="card-title p-2">
                         <h3>User Account Information</h3>
-                        <a href="{{route('user.create')}}" class="btn btn-primary">Create User</a>
+                        <a href="#" data-url="{{route('user.create')}}" data-modal-title="Create User" class="btn btn-primary open-modal">Create User</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-sm">

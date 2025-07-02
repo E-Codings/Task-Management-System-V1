@@ -17,7 +17,7 @@ Task Management System built for make the user role admin or user had permission
 ```bash
 # create .env file then copy form .env.example
 echo. > .env
-cp .env .env.example
+cp .env.example .env
 ```
 or
 ```bash
@@ -35,7 +35,7 @@ composer install
 php artisan key:generate
 ```
 - Generate Admin User
-```bash
+```bash 
 # generate key in .env
 php artisan generateadmin:credential {username} {email} {password}
 ```

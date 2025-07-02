@@ -218,6 +218,30 @@
         </div>
     </div>
     <div class="layout-overlay layout-menu-toggle"></div>
+    <button
+        type="button"
+        class="btn btn-primary btn-open-modal d-none"
+        data-bs-toggle="modal"
+        data-bs-target="#basicModal">
+        Launch modal
+    </button>
+     <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+        </div>
+    </div>
 </div>
 
 <div class="buy-now">
