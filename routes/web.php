@@ -18,4 +18,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/role-permission', [PermissionController::class, 'index'])->name('role.permission');
 
     Route::resource('user', UserController::class);
+    Route::post('/upload-file', [HomeController::class, 'uploadFile'])->name('uploadFile');
 });
