@@ -112,6 +112,12 @@
                         <div>Users</div>
                     </a>
                 </li>
+                <li class="menu-item">
+                    <a href="{{route('system.create')}}" class="menu-link">
+                        <i class="menu-icon icon-base ri ri-account-box-2-line"></i>
+                        <div>System</div>
+                    </a>
+                </li>
             </ul>
         </aside>
         <!-- / Menu -->
