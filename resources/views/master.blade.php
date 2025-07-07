@@ -1,6 +1,11 @@
 <!doctype html>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1b9836c (Finished with project table)
 <html lang="en" class="layout-menu-fixed layout-compact" data-assets-path="assets/"
     data-template="vertical-menu-template-free">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport"
@@ -25,10 +30,13 @@
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+<<<<<<< HEAD
     {{-- jquery link --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+=======
+>>>>>>> 1b9836c (Finished with project table)
 </head>
 
 <body>
@@ -108,6 +116,14 @@
                         </a>
                     </li>
 
+                    @can(['edit project', 'view project'])
+                        <li class="menu-item">
+                            <a href="{{ route('project.index') }}" class="menu-link">
+                                <i class="menu-icon icon-base ri ri-folders-line"></i>
+                                <div>Projects</div>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -187,7 +203,10 @@
                 <div class="content-wrapper">
                     <!-- Content -->
                     @yield('content')
+<<<<<<< HEAD
                     @yield('status-content')
+=======
+>>>>>>> 1b9836c (Finished with project table)
                     <footer class="content-footer footer bg-footer-theme">
                         <div class="container-xxl">
                             <div
@@ -206,6 +225,28 @@
                     </footer>
                     <div class="content-backdrop fade"></div>
                 </div>
+<<<<<<< HEAD
+=======
+            </div>
+        </div>
+        <div class="layout-overlay layout-menu-toggle"></div>
+        <button type="button" class="btn btn-primary btn-open-modal d-none" data-bs-toggle="modal"
+            data-bs-target="#basicModal">
+            Launch modal
+        </button>
+        <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                </div>
+>>>>>>> 1b9836c (Finished with project table)
             </div>
         </div>
         <div class="layout-overlay layout-menu-toggle"></div>
@@ -219,6 +260,10 @@
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+<<<<<<< HEAD
+=======
+    @stack('script-path')
+>>>>>>> 1b9836c (Finished with project table)
 </body>
 
 </html>
