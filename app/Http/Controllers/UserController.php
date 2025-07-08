@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
+
 
 class UserController extends Controller
 {
@@ -29,7 +33,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            "first_name" => ['required', 'min:1', 'max:20'],
+            "last_name" =>  ['required', 'min:1', 'max:20'],
+            "gender" =>  ['required', 'min:4'],
+            "email" =>  'required|regex:/(.+)@(.+)\.(.+)/i',
+            "password" => ["required", "min:8", Password::min(8)],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            $message = implode(", ", $errors->all());
+            return back()->with("error", $message);
+        };
+
+        // dd($validator->errors(),);
+        $user = User::create([
+            User::FIRST_NAME => $request->first_name,
+            User::LAST_NAME  => $request->last_name,
+            User::EMAIL      => $request->email,
+            User::GENDER     => $request->gender,
+            User::PROFILE    => $request->profile_name,
+            User::PASSWORD   => $request->password,
+        ]);
+
+        $user->assignRole('admin');
+        return back()->with('success', 'User Create Successfully');
     }
 
     /**

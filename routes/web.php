@@ -21,4 +21,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/system',[SystemController::class, 'store'])->name('system.store');
 
     Route::resource('user', UserController::class);
+    Route::post('/upload-file', [HomeController::class, 'uploadFile'])->name('uploadFile');
 });
