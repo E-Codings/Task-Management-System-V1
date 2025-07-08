@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{asset('assets/vendor/fonts/iconify-icons.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/vendor/css/core.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="{{asset('assets/vendor/js/helpers.js')}}"></script>
     <script src="{{asset('assets/js/jquery.js')}}"></script>
     <script src="{{asset('assets/js/custom.js')}}"></script>
@@ -110,6 +111,12 @@
                     <a href="{{route('user.index')}}" class="menu-link">
                         <i class="menu-icon icon-base ri ri-account-box-2-line"></i>
                         <div>Users</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{route('task.index')}}" class="menu-link">
+                        <i class="menu-icon icon-base bi bi-journal-text"></i>
+                        <div>Tasks</div>
                     </a>
                 </li>
             </ul>
@@ -225,6 +232,7 @@
         data-bs-target="#basicModal">
         Launch modal
     </button>
+
      <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -252,7 +260,7 @@
     >Another course</a
     >
 </div>
-
+@stack('script-path')
 <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
 <script src="{{asset('assets/vendor/js/menu.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>

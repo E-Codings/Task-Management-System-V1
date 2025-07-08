@@ -65,4 +65,8 @@ class User extends Authenticatable
     public function fullName(): string{
         return ($this->gender == 'Male' ? 'Mr.' : 'Ms.').$this->first_name.' '.$this->lastName;
     }
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
