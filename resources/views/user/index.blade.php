@@ -62,9 +62,8 @@
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
                     success: function(response) {
-                        // console.log(response);
-                        $('#show-profile').attr('src', '{{ asset('assets/img/profile') }}' +
-                            "/" + response);
+                        console.log(response);
+                        $('#show-profile').attr('src', response);
                         $('#profile_name').val(response);
                     },
                     error: function(xhr) {

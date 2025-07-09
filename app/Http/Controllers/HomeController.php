@@ -28,10 +28,9 @@ class HomeController extends Controller
         ]);
         $profile = $request->file('profile');
         $profileName = date('d-m-y-H-i-s').'-'.$profile->getClientOriginalName();
-        $path = 'assets/img/profile';
+        $path = 'assets/img/temporary';
         $profile->move($path, $profileName);
-        // dd($profileName);
-        return response()->json($profileName);
+        return asset($path.'/'.$profileName);
     }
-    
+
 }
