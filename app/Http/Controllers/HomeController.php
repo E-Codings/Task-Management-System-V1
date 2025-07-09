@@ -30,8 +30,7 @@ class HomeController extends Controller
         $profileName = date('d-m-y-H-i-s').'-'.$profile->getClientOriginalName();
         $path = 'assets/img/profile';
         $profile->move($path, $profileName);
-        // dd($profileName);
         return response()->json($profileName);
     }
-    
+
 }

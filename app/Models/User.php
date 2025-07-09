@@ -24,7 +24,6 @@ class User extends Authenticatable
     public const CREATED_AT = 'created_at';
     public const UPDATED_AT = 'updated_at';
 
-
     /**
      * The attributes that are mass assignable.
      *
@@ -64,6 +63,6 @@ class User extends Authenticatable
 
     public function fullName(): string
     {
-        return ($this->gender == 'Male' ? 'Mr.' : 'Ms.') . $this->first_name . ' ' . $this->lastName;
+        return ($this->gender == 'Male' ? 'Mr.' : 'Ms.') . $this->first_name. ' ' .$this->last_name;
     }
 }

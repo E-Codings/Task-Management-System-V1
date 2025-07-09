@@ -53,8 +53,8 @@ class UserController extends Controller
             User::LAST_NAME  => $request->last_name,
             User::EMAIL      => $request->email,
             User::GENDER     => $request->gender,
-            User::PROFILE    => $request->profile_name,
             User::PASSWORD   => $request->password,
+            User::PROFILE    => $request->profile_name,
         ]);
 
         $user->assignRole('admin');
@@ -74,7 +74,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id);
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -82,14 +83,44 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            "first_name" => ['required', 'min:1', 'max:20'],
+            "last_name" =>  ['required', 'min:1', 'max:20'],
+            "gender" =>  ['required', 'min:4'],
+            "email" =>  'required|regex:/(.+)@(.+)\.(.+)/i',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            $message = implode(", ", $errors->all());
+            return back()->with("error", $message);
+        }
+
+        $user = User::find($id);
+        dd($user);
+        if ($user) {
+            $user = User::where('id', $user->id)->update([
+                User::FIRST_NAME => $request->first_name,
+                User::LAST_NAME  => $request->last_name,
+                User::EMAIL      => $request->email,
+                User::GENDER     => $request->gender,
+                User::PROFILE    => $request->profile_name,
+            ]);
+        }
+        return back()->with('success', 'User Update Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $user = User::find($request->id);
+        if ($user) {
+            $user->delete();
+            return redirect()->back()->with('success', 'User Deleted.');
+        } else {
+            return redirect()->back()->with('error', 'User not found.');
+        }
     }
 }

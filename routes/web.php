@@ -19,4 +19,5 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('user', UserController::class);
     Route::post('/upload-file', [HomeController::class, 'uploadFile'])->name('uploadFile');
+    Route::delete('/user/delete', [UserController::class, 'destroy'])->name('user.delete');
 });
