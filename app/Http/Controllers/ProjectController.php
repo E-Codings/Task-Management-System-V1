@@ -130,7 +130,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        if (!Auth()->can(PermissionConstant::REMOVE_PROJECT)) {
+        if (!Auth::user()->can(PermissionConstant::REMOVE_PROJECT)) {
             return back()->with('error', 'Permission Denied');
         }
         $project->delete();
