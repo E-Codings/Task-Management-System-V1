@@ -1,9 +1,9 @@
 <div class="container">
-    <h2>Update New Project</h2>
+
     <form action="{{ route('project.update', $project->id) }}" method="POST">
         @method('PUT')
         @csrf
-        <div class="mb-2 col-6">
+        <div class="mb-2 ">
             <label for="Name">Name:</label>
             <input type="text" value="{{ $project->name }}" name="name" class="form-control" required>
         </div>
