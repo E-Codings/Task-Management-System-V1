@@ -1,6 +1,5 @@
 @extends('master')
 @section('status-content')
-    {{ $errors }}
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row gy-6">
             <div class="col-12">
