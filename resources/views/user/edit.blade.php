@@ -48,9 +48,10 @@
         <div class="col mb-2">
             <label for="first_name">Profile: </label>
             <input type="file" name="profile" class="form-control" id="profile">
-            <input type="hidden" name="profile_name" value="{{ $user->profile }}" class="form-control my-2 " id="profile_name">
+            <input type="hidden" name="profile_name" value="{{ $user->profile }}" class="form-control my-2 "
+                id="profile_name">
             <div class="preview-profile border border-1 border-dark mt-2" style="width: fit-content; cursor: pointer;">
-                <img src="{{ asset('assets/img/profile/' . $user->profile) }}" id="show-profile" alt=""
+                <img src="{{ asset('assets/img/profile' . $user->profile) }}" id="show-profile" alt=""
                     style="width:150px">
             </div>
         </div>
@@ -61,5 +62,4 @@
             Back </button>
         <button type="submit" class="btn btn-primary ms-2">Save</button>
     </div>
-
 </form>

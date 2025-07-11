@@ -35,12 +35,14 @@
                                         <td>{{ $user->created_at }}</td>
                                         <td>{{ $user->updated_at }}</td>
                                         <td>
-                                            <a href="#" data-url="{{ route('user.edit', $user->id) }}"
+                                            <button data-url="{{ route('user.edit', $user->id) }}"
                                                 class="btn btn-warning my-1 open-modal" data-modal-title="Update USER"><i
-                                                    class="bi bi-pen"></i></a>
+                                                    class="bi bi-pen"></i>
+                                            </button>
                                             <button class="btn btn-danger" id="btn-remove"
                                                 data-remove-id="{{ $user->id }}" data-bs-toggle="modal"
-                                                data-bs-target="#removeModal"><i class="bi bi-x-lg"></i></button>
+                                                data-bs-target="#removeModal"><i class="bi bi-x-lg"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -52,19 +54,20 @@
         </div>
     </div>
 
+    <!-- Modal delete User-->
     <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="removeModalLabel">Remove User</h1>
+                    <h1 class="modal-title fs-5" id="removeModalLabel">Remove student</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="p-4">
                     <form action="{{ route('user.delete') }}" method="POST">
-                        @csrf
                         @method('DELETE')
+                        @csrf
                         <label class="h4">Do you want to remove this user?</label>
-                        <input type="text" id="remove-id" name="id">
+                        <input type="hidden" id="remove-id" name="remove_id">
                         <div class="mt-2">
                             <button type="button" data-bs-dismiss="modal" class="btn btn-success">No</button>
                             <button class="btn btn-danger">Yes</button>
@@ -75,6 +78,7 @@
         </div>
     </div>
 @endsection
+
 @push('script-path')
     <script>
         $(document).ready(function() {
@@ -83,10 +87,6 @@
             });
             $(document).on('change', '#profile', function() {
                 var formData = new FormData();
-                // console.log($('#profile'));
-                // console.log($('#profile')[0]);
-                // console.log($('#profile')[0].files);
-                // console.log($('#profile')[0].files[0]);
 
                 var profile = $('#profile')[0].files[0];
                 console.log(profile);
@@ -95,7 +95,6 @@
                 console.log(formData);
 
                 $.ajax({
-                    //url: '/upload-file';
                     url: "{{ route('uploadFile') }}",
                     method: 'POST',
                     data: formData,
@@ -109,19 +108,20 @@
                         console.log(response);
                         console.log($('#show-profile'));
 
-                        $('#show-profile').attr('src', `{{ asset('assets/img/profile') }}` +
-                            '/' + response);
+                        $('#show-profile').attr('src', response);
                         console.log($('#show-profile').attr('src'));
 
                         $('#profile_name').val(response);
                     },
                     error: function(xhr) {
                         console.error("Error:", xhr
-                        .responseText); // This will show the error message
+                            .responseText);
                     },
                 })
             });
         });
+    </script>
+    <script>
         $(document).on('click', '#btn-remove', function() {
             var id = $(this).data('remove-id');
             $('#remove-id').val(id);

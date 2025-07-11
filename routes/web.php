@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Models\User;
 
 Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login.submit');
@@ -19,5 +20,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('user', UserController::class);
     Route::post('/upload-file', [HomeController::class, 'uploadFile'])->name('uploadFile');
-    Route::delete('/user/delete', [UserController::class, 'destroy'])->name('user.delete');
+    Route::controller(UserController::class)->group(function () {
+        Route::delete('/user/delete', 'destroy')->name('user.delete');
+    });
 });
+

@@ -20,7 +20,7 @@ class HomeController extends Controller
     /**
      *upload file that request from ajax
      *@param $request, request file when submit
-     * @return STring, file uploaded
+     *@return String, file uploaded
     */
     public function uploadFile(Request $request){
         $validate = $request->validate([
@@ -28,9 +28,8 @@ class HomeController extends Controller
         ]);
         $profile = $request->file('profile');
         $profileName = date('d-m-y-H-i-s').'-'.$profile->getClientOriginalName();
-        $path = 'assets/img/profile';
+        $path = 'assets/img/temporary/';
         $profile->move($path, $profileName);
-        return response()->json($profileName);
+        return asset($path.$profileName) ;
     }
-
 }

@@ -43,7 +43,6 @@ $(document).on('click', '.open-modal', function(){
     const title = $(this).data('modal-title');
 
     $('#basicModal').find('.modal-title').text(title);
-    $('#basicModal').find('.modal-title');
 
     $.ajax({
         url,
@@ -52,4 +51,3 @@ $(document).on('click', '.open-modal', function(){
         }
     });
 });
-
