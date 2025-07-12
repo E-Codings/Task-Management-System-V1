@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -20,6 +21,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/change-password', [AuthenticationController::class, 'changePassword'])->name('change-password');
     Route::get('/role-permission', [PermissionController::class, 'index'])->name('role.permission');
 
+    Route::get('/status', [statusController::class, 'index'])->name('index');
+    Route::get('/create', [statusController::class, 'create'])->name('create');
+    Route::post('/status/store-status', [statusController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [statusController::class, 'edit'])->name('edit');
+    Route::put('/update/{id}', [statusController::class, 'update'])->name('update');
+    Route::get('/delete/{id}', [statusController::class, 'delete'])->name('delete'); // confirmation page
+    Route::delete('/status/{id}', [StatusController::class, 'destroy'])->name('destroy');
     Route::resource('user', UserController::class);
     Route::resource('task', TaskController::class);
     Route::controller(TaskController::class)->group(function(){
