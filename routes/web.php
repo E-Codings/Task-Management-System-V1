@@ -28,11 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/update/{id}', [statusController::class, 'update'])->name('update');
     Route::get('/delete/{id}', [statusController::class, 'delete'])->name('delete'); // confirmation page
     Route::delete('/status/{id}', [StatusController::class, 'destroy'])->name('destroy');
+
     Route::resource('user', UserController::class);
+    Route::resource('project', ProjectController::class);
     Route::resource('task', TaskController::class);
     Route::controller(TaskController::class)->group(function(){
-        Route::delete('/student/delete', 'destroy')->name('task.delete');
+        Route::delete('/task/delete', 'destroy')->name('task.delete');
     });
-    Route::resource('project', ProjectController::class);
-    Route::resource('status', StatusController::class);
 });

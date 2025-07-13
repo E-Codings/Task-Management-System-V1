@@ -15,7 +15,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,6 +27,12 @@
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+    {{-- tinymce --}}
+    <script
+    src="https://cdn.tiny.cloud/1/0scbrl97i5yro3de3jucxc5stxnsjs8o3ac0hhwp2lhylckh/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin">
+</script>
+
     {{-- jquery link --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -119,11 +125,11 @@
                         </li>
                     @endcan
                     <li class="menu-item">
-                    <a href="{{route('task.index')}}" class="menu-link">
-                        <i class="menu-icon icon-base bi bi-journal-text"></i>
-                        <div>Tasks</div>
-                    </a>
-                </li>
+                        <a href="{{ route('task.index') }}" class="menu-link">
+                            <i class="menu-icon icon-base bi bi-journal-text"></i>
+                            <div>Tasks</div>
+                        </a>
+                    </li>
                 </ul>
             </aside>
             <!-- / Menu -->

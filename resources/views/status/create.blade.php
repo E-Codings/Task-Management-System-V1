@@ -13,11 +13,22 @@
             </div>
             <div class="mb-3">
                 <label for="statusRemark" class="form-label">Remark</label>
-                <textarea class="form-control" id="statusRemark" name="remark"></textarea>
+                <textarea class="form-control tinymce" id="statusRemark" name="remark"></textarea>
             </div>
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
+    <script>
+        tinymce.init({
+    selector: 'textarea#statusRemark',
+    theme: 'silver',
+    menubar: false,
+    plugins: 'lists link image code',
+    toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | code',
+    height: 300
+});
+
+    </script>
 </div>

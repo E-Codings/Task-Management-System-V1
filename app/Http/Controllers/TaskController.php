@@ -122,9 +122,9 @@ class TaskController extends Controller
         $task = Task::find($request->remove_id);
         if ($task) {
             Task::where(Task::ID, $request->remove_id)->delete();
-            return redirect()->back()->with('success', 'task Deleted');
+            return redirect()->back()->with('success', 'Task Deleted');
         } else {
-            return redirect()->back()->with('error', 'task not found');
+            return redirect()->back()->with('error', 'Task not found');
         }
     }
 }

@@ -11,8 +11,8 @@ class StatusSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
-        Status::factory()->count(2)->create(); // creates 10 fake status rows
-    }
+    // public function run(): void
+    // {
+    //     Status::factory()->count(2)->create(); // creates 10 fake status rows
+    // }
 }

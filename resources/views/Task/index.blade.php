@@ -79,7 +79,7 @@
                         @method('DELETE')
                         @csrf
                         <label for="" class="h4">Do you want to remove this task?</label>
-                        <input type="text" id="remove-id" name="remove_id">
+                        <input type="hidden" id="remove-id" name="remove_id">
                         <div class="mt-2">
                             <button type="button" data-bs-dismiss="modal" class="btn btn-success">No</button>
                             <button class="btn btn-danger">Yes</button>
