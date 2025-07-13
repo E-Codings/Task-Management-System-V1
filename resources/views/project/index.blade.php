@@ -92,7 +92,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 @if (isset($project) && count($projects) > 0)
-                    <div class="modal-body">
+                    <div class="p-4">
                         <form action="{{ route('project.destroy', $project->id) }}" method="POSt">
                             @method('DELETE')
                             @csrf

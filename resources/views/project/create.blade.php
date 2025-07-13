@@ -14,5 +14,6 @@
                 Close
             </button>
             <button type="submit" class="btn btn-primary ms-2">Save </button>
+        </div>
     </form>
 </div>
