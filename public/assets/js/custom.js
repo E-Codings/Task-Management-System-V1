@@ -59,8 +59,8 @@ $(document).on("click", ".open-modal", function () {
     $(".btn-open-modal").click();
     const title = $(this).data("modal-title");
 
-    $("#basicModal").find(".modal-title").text(title);
-    console.log($("#basicModal").find(".modal-title"));
+    $('#basicModal').find('.modal-title').text(title);
+    console.log($('#basicModal').find('.modal-title'));
 
     $.ajax({
         url,

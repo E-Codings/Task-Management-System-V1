@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Models\User;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TaskController;
@@ -35,4 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::controller(TaskController::class)->group(function(){
         Route::delete('/task/delete', 'destroy')->name('task.delete');
     });
+    Route::post('/upload-file', [HomeController::class, 'uploadFile'])->name('uploadFile');
+    Route::controller(UserController::class)->group(function () {
+        Route::delete('/user/delete', 'destroy')->name('user.delete');
+    });
 });
+

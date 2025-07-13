@@ -15,28 +15,22 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/iconify-icons.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
-    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
-    {{-- tinymce --}}
-    <script
-    src="https://cdn.tiny.cloud/1/0scbrl97i5yro3de3jucxc5stxnsjs8o3ac0hhwp2lhylckh/tinymce/6/tinymce.min.js"
-    referrerpolicy="origin">
-</script>
 
-    {{-- jquery link --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Link CDN Icon Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap"
+        rel="stylesheet"/>
+    <link rel="stylesheet" href="{{asset('assets/vendor/fonts/iconify-icons.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/vendor/css/core.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}"/>
+    <script src="{{asset('assets/vendor/js/helpers.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.js')}}"></script>
+    <script src="{{asset('assets/js/custom.js')}}"></script>
 </head>
 
 <body>
@@ -82,57 +76,41 @@
 
                 <div class="menu-inner-shadow"></div>
 
-                <ul class="menu-inner py-1">
-                    <!-- Dashboards -->
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon icon-base ri ri-home-smile-line"></i>
-                            <div data-i18n="Dashboards">Dashboards</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="#" target="_blank" class="menu-link">
-                                    <div data-i18n="CRM">Overview</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="{{ route('role.permission') }}" target="_blank" class="menu-link">
-                                    <div data-i18n="CRM">Role and Permission</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ route('user.index') }}" class="menu-link">
-                            <i class="menu-icon icon-base ri ri-account-box-2-line"></i>
-                            <div>Users</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        {{-- <a href="{{ route('status.index') }}" class="menu-link"> --}}
-                        <a href="/status" class="menu-link">
-                            <i class="menu-icon icon-base ri ri-account-box-2-line"></i>
-                            <div>Status</div>
-                        </a>
-                    </li>
-
-                    @can(['edit project', 'view project'])
+            <ul class="menu-inner py-1">
+                <!-- Dashboards -->
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon icon-base ri ri-home-smile-line"></i>
+                        <div data-i18n="Dashboards">Dashboards</div>
+                    </a>
+                    <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="{{ route('project.index') }}" class="menu-link">
-                                <i class="menu-icon icon-base ri ri-folders-line"></i>
-                                <div>Projects</div>
+                            <a
+                                href="#"
+                                target="_blank"
+                                class="menu-link">
+                                <div data-i18n="CRM">Overview</div>
                             </a>
                         </li>
-                    @endcan
-                    <li class="menu-item">
-                        <a href="{{ route('task.index') }}" class="menu-link">
-                            <i class="menu-icon icon-base bi bi-journal-text"></i>
-                            <div>Tasks</div>
-                        </a>
-                    </li>
-                </ul>
-            </aside>
-            <!-- / Menu -->
+                        <li class="menu-item">
+                            <a
+                                href="{{route('role.permission')}}"
+                                target="_blank"
+                                class="menu-link">
+                                <div data-i18n="CRM">Role and Permission</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="{{route('user.index')}}" class="menu-link">
+                        <i class="menu-icon icon-base ri ri-account-box-2-line"></i>
+                        <div>Users</div>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <!-- / Menu -->
 
             <!-- Layout container -->
             <div class="layout-page">
@@ -205,62 +183,70 @@
                 </nav>
 
 
-                <!-- Content wrapper -->
-                <div class="content-wrapper">
-                    <!-- Content -->
-                    @yield('content')
-                    @yield('status-content')
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div class="container-xxl">
-                            <div
-                                class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                                <div class="mb-2 mb-md-0">
-                                    &#169;
-                                    <script>
-                                        document.write(new Date().getFullYear());
-                                    </script>
-                                    , made with ❤️ by
-                                    <a href="https://themeselection.com" target="_blank"
-                                        class="footer-link fw-medium">ThemeSelection</a>
-                                </div>
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
+                @yield('content')
+                <footer class="content-footer footer bg-footer-theme">
+                    <div class="container-xxl">
+                        <div
+                            class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                            <div class="mb-2 mb-md-0">
+                                &#169;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
+                                , made with ❤️ by
+                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-medium"
+                                >ThemeSelection</a
+                                >
                             </div>
                         </div>
-                    </footer>
-                    <div class="content-backdrop fade"></div>
-                </div>
+                    </div>
+                </footer>
+                <div class="content-backdrop fade"></div>
             </div>
         </div>
-        <div class="layout-overlay layout-menu-toggle"></div>
-        <button type="button" class="btn btn-primary btn-open-modal d-none" data-bs-toggle="modal"
-            data-bs-target="#basicModal">
-            Launch modal
-        </button>
-        <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
+    </div>
+    <div class="layout-overlay layout-menu-toggle"></div>
+    <button
+        type="button"
+        class="btn btn-primary btn-open-modal d-none"
+        data-bs-toggle="modal"
+        data-bs-target="#basicModal">
+        Launch modal
+    </button>
+     <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
-                    </div>
-                </div>
             </div>
         </div>
-        <div class="layout-overlay layout-menu-toggle"></div>
+        </div>
     </div>
+</div>
 
-    <div class="buy-now">
-        <a href="https://www.facebook.com/profile.php?id=61577601053145" target="_blank"
-            class="btn btn-danger btn-buy-now">Another course</a>
-    </div>
+<div class="buy-now">
+    <a
+        href="https://www.facebook.com/profile.php?id=61577601053145"
+        target="_blank"
+        class="btn btn-danger btn-buy-now"
+    >Another course</a
+    >
+</div>
 
-    <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-    @stack('script-path')
+<script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
+<script src="{{asset('assets/vendor/js/menu.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 
 </html>
