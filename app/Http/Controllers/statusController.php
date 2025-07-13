@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StatusController extends Controller
 {
@@ -11,7 +13,9 @@ class StatusController extends Controller
      */
     public function index()
     {
-        //
+        // get all status of user
+        $status = Status::get();
+        return view('status.index', compact('status'));
     }
 
     /**
@@ -19,7 +23,7 @@ class StatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('status.create');
     }
 
     /**
@@ -28,6 +32,22 @@ class StatusController extends Controller
     public function store(Request $request)
     {
         //
+        // Validate input, use constants for field names
+        $validated = $request->validate([
+            Status::NAME => 'required|string|max:255',
+            Status::REMARK => 'nullable|string',
+        ]);
+
+        // Create new status using the validated data
+        $status = Status::create([
+            Status::NAME => $validated[Status::NAME],
+            Status::REMARK => $validated[Status::REMARK] ?? null,
+            Status::CREATED_BY =>  Auth::user()->id,  // assuming logged-in user
+            Status::MODIFY_BY => Auth::user()->id,   // initially same as created_by
+        ]);
+
+        // Redirect or respond as needed
+        return redirect()->route('index')->with('success', 'Status created successfully!');
     }
 
     /**
@@ -44,6 +64,8 @@ class StatusController extends Controller
     public function edit(string $id)
     {
         //
+        $statusId = Status::find($id);
+        return view('status.edit', compact('statusId'));
     }
 
     /**
@@ -51,14 +73,34 @@ class StatusController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validate input using constants
+        $validated = $request->validate([
+            Status::NAME => 'required|string|max:255',
+            Status::REMARK => 'nullable|string',
+        ]);
+
+        // Find the existing status by ID
+        $status = Status::findOrFail($id);
+
+        // Update the status record
+        $status->update($validated);
+
+        // Redirect with success message
+        return redirect()->route('index')->with('success', 'Status updated successfully!');
     }
 
+    public function delete(string $id)
+    {
+        $deleteId = Status::findOrFail($id);
+        return view('status.delete', compact('deleteId'));
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $deleteId = Status::findOrFail($id);
+        $deleteId->delete();
+        return redirect()->route('index')->with('success', 'Status deleted successfully!');
     }
 }
