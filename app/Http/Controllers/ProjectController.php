@@ -128,12 +128,18 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy(Request $request)
     {
-        if (!Auth()->can(PermissionConstant::REMOVE_PROJECT)) {
+        if (!Auth::user()->can(PermissionConstant::REMOVE_PROJECT)) {
             return back()->with('error', 'Permission Denied');
         }
+        $project = Project::find($request->remove_id);
+        if (!$project) {
+            return redirect()->back()->with('error', 'Project not found');
+        }
+
         $project->delete();
+
         return redirect()->route('project.index')->with('success', 'Project Deleted.');
     }
 }
