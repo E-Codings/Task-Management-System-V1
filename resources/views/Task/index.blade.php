@@ -7,8 +7,8 @@
                 <h2 class="text-center">Task Account</h2>
                 <div class="card overflow-hidden">
                     <div class="card-title p-2">
-                        <a href="#" data-url="{{ route('task.create') }}" class="btn btn-primary open-modal"
-                            data-modal-title="Create Task">Create Task</a>
+                        <button data-url="{{ route('task.create') }}" class="btn btn-primary open-modal"
+                            data-modal-title="Create Task">Create Task</button>
                     </div>
                     <div class="table-responsive text-center">
                         <table class="table table-sm">

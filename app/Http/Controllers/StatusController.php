@@ -97,9 +97,9 @@ class StatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        $deleteId = Status::findOrFail($id);
+        $deleteId = Status::findOrFail($request->remove_id);
         $deleteId->delete();
         return redirect()->route('index')->with('success', 'Status deleted successfully!');
     }

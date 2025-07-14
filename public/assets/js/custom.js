@@ -60,12 +60,28 @@ $(document).on("click", ".open-modal", function () {
     const title = $(this).data("modal-title");
 
     $("#basicModal").find(".modal-title").text(title);
-    console.log($("#basicModal").find(".modal-title"));
 
     $.ajax({
         url,
         success: function (res) {
-            $(".modal-body").html(res);
-        },
+            $("#basicModal").find(".modal-body").html(res);
+            configTinymce();
+        }
     });
 });
+
+function configTinymce(){
+    //tinymce
+    tinymce.remove('textarea');
+    tinymce.init({
+        selector: 'textarea',
+        theme: 'silver',
+        menubar: false,
+        plugins: 'lists link image code',
+        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | code',
+        height: 300
+    });
+}
+
+
+

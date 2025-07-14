@@ -26,8 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/status/store-status', [statusController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [statusController::class, 'edit'])->name('edit');
     Route::put('/update/{id}', [statusController::class, 'update'])->name('update');
-    Route::get('/delete/{id}', [statusController::class, 'delete'])->name('delete'); // confirmation page
-    Route::delete('/status/{id}', [StatusController::class, 'destroy'])->name('destroy');
+    Route::delete('/delete', [statusController::class, 'destroy'])->name('status.delete');
 
     Route::resource('user', UserController::class);
     Route::resource('project', ProjectController::class);

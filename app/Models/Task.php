@@ -12,19 +12,19 @@ class Task extends Model
     const TITLE = 'title';
     const DURATION = 'duration';
     const REMARK = 'remark';
-    const PROJECT_ID = 'project'; //project_id
+    const PROJECT = 'project'; //project_id
     const CREATED_BY = 'created_by';
     const MODIFY_BY = 'modify_by';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-    const STATUS_ID = 'status';
+    const STATUS = 'status';
 
     protected $fillable = [
         self::TITLE,
         self::DURATION,
         self::REMARK,
-        self::PROJECT_ID,
-        self::STATUS_ID,
+        self::PROJECT,
+        self::STATUS,
         self::CREATED_BY,
         self::MODIFY_BY,
     ];
