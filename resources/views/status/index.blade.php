@@ -7,8 +7,8 @@
                     <div class="card-title p-2">
                         <h3>Status Account Information</h3>
                         <!-- Create Status Button -->
-                        <button type="button" class="btn btn-primary" data-action="show"
-                            data-modal-url="{{ route('create') }}">
+                        <button type="button" class="btn btn-primary open-modal" data-modal-title="Create New Status"
+                            data-url="{{ route('create') }}">
                             Create Status
                         </button>
                     </div>
@@ -37,24 +37,49 @@
                                         <td>{{ $s->created_at }}</td>
                                         <td>{{ $s->updated_at }}</td>
                                         <td class="text-end align-bottom">
-                                            <button type="button" class="btn btn-outline-warning" data-action="show"
-                                                data-modal-url="{{ route('edit', $s->id) }}">Edit</button>
-                                            <button type="button" class="btn btn-outline-danger" data-action="show"
-                                                data-modal-url="{{ route('delete', $s->id) }}">Delete</button>
+                                            <button type="button" class="btn btn-outline-warning open-modal" data-modal-title="Edit Status"
+                                                data-url="{{ route('edit', $s->id) }}">Edit</button>
+                                            <button type="button" class="btn btn-outline-danger"  id="btn-remove" data-remove-id="{{ $s->id }}" data-bs-toggle="modal" data-bs-target="#removeModal">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <div class="modal fade" id="createStatusModal" tabindex="-1" aria-labelledby="createStatusModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/customer.js') }}"></script>
+
+    <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createStatusModalLabel">Delete Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('status.delete') }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <label for="" class="h4">Do you want to remove this task?</label>
+                        <input type="hidden" id="remove-id" name="remove_id">
+                        <div class="mt-2">
+                            <button type="button" data-bs-dismiss="modal" class="btn btn-success">No</button>
+                            <button class="btn btn-danger">Yes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+@push('script-path')
+    <script>
+        $(document).on('click', '#btn-remove', function() {
+            var id = $(this).data('remove-id');
+            $('#remove-id').val(id)
+        })
+    </script>
+@endpush
+
