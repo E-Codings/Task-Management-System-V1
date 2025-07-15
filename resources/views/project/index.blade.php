@@ -8,8 +8,8 @@
                         <div class="card-title p-2 col-5">
                             <h3>Project Information</h3>
                             @can('create project')
-                                <a href="#" data-url="{{ route('project.create') }}" data-modal-title="Create Project"
-                                    class="btn btn-primary open-modal">Create Project</a>
+                                <button data-url="{{ route('project.create') }}" data-modal-title="Create Project"
+                                    class="btn btn-primary open-modal">Create Project</button>
                             @endcan
                         </div>
 

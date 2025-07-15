@@ -102,8 +102,8 @@ class TaskController extends Controller
             Task::where(Task::ID, $id)->update([
                 Task::TITLE => $request->title,
                 Task::DURATION  => $request->duration,
-                Task::STATUS_ID     => $request->status,
-                Task::PROJECT_ID      => $request->project,
+                Task::STATUS     => $request->status,
+                Task::PROJECT      => $request->project,
                 Task::REMARK     => $request->remark,
                 Task::CREATED_BY    => Auth::id(),
                 Task::MODIFY_BY    => Auth::id(),
