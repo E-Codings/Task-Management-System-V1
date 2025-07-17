@@ -22,22 +22,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/change-password', [AuthenticationController::class, 'changePassword'])->name('change-password');
     Route::get('/role-permission', [PermissionController::class, 'index'])->name('role.permission');
 
-    Route::get('/status', [statusController::class, 'index'])->name('index');
-    Route::get('/create', [statusController::class, 'create'])->name('create');
-    Route::post('/status/store-status', [statusController::class, 'store'])->name('store');
-    Route::get('/edit/{id}', [statusController::class, 'edit'])->name('edit');
-    Route::put('/update/{id}', [statusController::class, 'update'])->name('update');
-    Route::delete('/delete', [statusController::class, 'destroy'])->name('status.delete');
 
     Route::resource('user', UserController::class);
+    Route::resource('status', StatusController::class);
     Route::resource('project', ProjectController::class);
     Route::resource('task', TaskController::class);
-    Route::controller(TaskController::class)->group(function(){
+    Route::controller(TaskController::class)->group(function () {
         Route::delete('/task/delete', 'destroy')->name('task.delete');
     });
     Route::post('/upload-file', [HomeController::class, 'uploadFile'])->name('uploadFile');
     Route::controller(UserController::class)->group(function () {
         Route::delete('/user/delete', 'destroy')->name('user.delete');
     });
+    Route::controller(StatusController::class)->group(function(){
+        Route::delete('/status/delet','destory')->name('status.delete'); 
+    });
 });
-

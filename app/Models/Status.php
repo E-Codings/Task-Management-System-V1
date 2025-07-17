@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
 {
+    use HasFactory;
     // Table name
     const TABLENAME = 'status';
     // Column names
@@ -33,5 +35,13 @@ class Status extends Model
     public function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, self::CREATED_BY);
+    }
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, self::MODIFY_BY);
     }
 }

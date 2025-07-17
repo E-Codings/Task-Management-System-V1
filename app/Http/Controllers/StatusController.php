@@ -47,7 +47,7 @@ class StatusController extends Controller
         ]);
 
         // Redirect or respond as needed
-        return redirect()->route('index')->with('success', 'Status created successfully!');
+        return back()->with('success', 'Status created successfully!');
     }
 
     /**
@@ -83,10 +83,14 @@ class StatusController extends Controller
         $status = Status::findOrFail($id);
 
         // Update the status record
-        $status->update($validated);
+        $status->update([
+            Status::NAME => $validated[Status::NAME],
+            Status::REMARK => $validated[Status::REMARK] ?? null,
+            Status::MODIFY_BY => Auth::user()->id,   // initially same as created_by
+        ]);
 
         // Redirect with success message
-        return redirect()->route('index')->with('success', 'Status updated successfully!');
+        return back()->with('success', 'Status updated successfully!');
     }
 
     public function delete(string $id)
@@ -101,6 +105,6 @@ class StatusController extends Controller
     {
         $deleteId = Status::findOrFail($request->remove_id);
         $deleteId->delete();
-        return redirect()->route('index')->with('success', 'Status deleted successfully!');
+        return back()->with('success', 'Status deleted successfully!');
     }
 }

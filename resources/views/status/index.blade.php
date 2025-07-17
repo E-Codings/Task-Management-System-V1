@@ -8,7 +8,7 @@
                         <h3>Status Account Information</h3>
                         <!-- Create Status Button -->
                         <button type="button" class="btn btn-primary open-modal" data-modal-title="Create New Status"
-                            data-url="{{ route('create') }}">
+                            data-url="{{ route('status.create') }}">
                             Create Status
                         </button>
                     </div>
@@ -27,19 +27,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($status as $index => $s)
+                                @foreach ($status as $index => $status)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $s->name }}</td>
-                                        <td>{{ $s->created_by }}</td>
-                                        <td>{{ $s->modify_by }}</td>
-                                        <td>{{ $s->remark }}</td>
-                                        <td>{{ $s->created_at }}</td>
-                                        <td>{{ $s->updated_at }}</td>
+                                        <td>{{ $status->name }}</td>
+                                        <td>{{ $status->createdBy->fullName() }}</td>
+                                        {{-- <td>{{ $status->created_by }}</td> --}}
+                                        <td>{{ $status->updatedBy->fullName() }}</td>
+                                        {{-- <td>{{ $status->modify_by }}</td> --}}
+                                        <td>{!! $status->remark !!}</td>
+                                        <td>{{ $status->created_at }}</td>
+                                        <td>{{ $status->updated_at }}</td>
                                         <td class="text-end align-bottom">
-                                            <button type="button" class="btn btn-outline-warning open-modal" data-modal-title="Edit Status"
-                                                data-url="{{ route('edit', $s->id) }}">Edit</button>
-                                            <button type="button" class="btn btn-outline-danger"  id="btn-remove" data-remove-id="{{ $s->id }}" data-bs-toggle="modal" data-bs-target="#removeModal">Delete</button>
+                                            <button type="button" class="btn btn-outline-warning open-modal"
+                                                data-modal-title="Edit Status"
+                                                data-url="{{ route('status.edit', $status->id) }}">Edit</button>
+                                            <button type="button" class="btn btn-outline-danger" id="btn-remove"
+                                                data-remove-id="{{ $status->id }}" data-bs-toggle="modal"
+                                                data-bs-target="#removeModal">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -82,4 +87,3 @@
         })
     </script>
 @endpush
-

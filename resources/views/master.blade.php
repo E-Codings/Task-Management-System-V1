@@ -27,9 +27,10 @@
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     {{-- tinymce --}}
-    <script src="https://cdn.tiny.cloud/1/0scbrl97i5yro3de3jucxc5stxnsjs8o3ac0hhwp2lhylckh/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/0scbrl97i5yro3de3jucxc5stxnsjs8o3ac0hhwp2lhylckh/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
-</script>
+    </script>
 </head>
 
 <body>
@@ -77,7 +78,7 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Dashboards -->
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->routeIs('home') ? 'is-active' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon icon-base ri ri-home-smile-line"></i>
                             <div data-i18n="Dashboards">Dashboards</div>
@@ -95,13 +96,13 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->routeIs('user.index') ? 'is-active' : '' }}">
                         <a href="{{ route('user.index') }}" class="menu-link">
                             <i class="menu-icon icon-base ri ri-account-box-2-line"></i>
                             <div>Users</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{ Request::is('status') ? 'is-active' : '' }} ">
                         {{-- <a href="{{ route('status.index') }}" class="menu-link"> --}}
                         <a href="/status" class="menu-link">
                             <i class="menu-icon icon-base ri ri-account-box-2-line"></i>
@@ -110,14 +111,14 @@
                     </li>
 
                     @can(['edit project', 'view project'])
-                        <li class="menu-item">
+                        <li class="menu-item {{ request()->routeIs('project.index') ? 'is-active' : '' }}">
                             <a href="{{ route('project.index') }}" class="menu-link">
                                 <i class="menu-icon icon-base ri ri-folders-line"></i>
                                 <div>Projects</div>
                             </a>
                         </li>
                     @endcan
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->routeIs('task.index') ? 'is-active' : '' }}">
                         <a href="{{ route('task.index') }}" class="menu-link">
                             <i class="menu-icon icon-base bi bi-journal-text"></i>
                             <div>Tasks</div>

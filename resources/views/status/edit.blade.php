@@ -1,4 +1,4 @@
-<form action="{{ route('update', $statusId->id) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('status.update', $statusId->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT') <!-- This is the key line -->
     <div class="mb-3">

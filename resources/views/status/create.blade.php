@@ -1,4 +1,4 @@
-<form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('status.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label for="statusName" class="form-label">Name</label>
@@ -12,6 +12,6 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             Close
         </button>
-        <button type="submit" class="btn btn-primary ms-2">Save </button>
+        <button type="submit" class="btn btn-primary ms-2">Save</button>
     </div>
 </form>
