@@ -30,4 +30,8 @@ class Status extends Model
         self::CREATED_AT,
         self::UPDATED_AT,
     ]);
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

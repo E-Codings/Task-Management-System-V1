@@ -2,27 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Task extends Model
 {
-    use HasFactory;
-    const TABLE_NAME = 'projects';
+    const TABLE_NAME = 'tasks';
     const ID = 'id';
-    const NAME = 'name';
+    const TITLE = 'title';
+    const DURATION = 'duration';
     const REMARK = 'remark';
+    const PROJECT = 'project'; //project_id
     const CREATED_BY = 'created_by';
     const MODIFY_BY = 'modify_by';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-    protected $fillable = [
+    const STATUS = 'status';
 
-        self::NAME,
+    protected $fillable = [
+        self::TITLE,
+        self::DURATION,
         self::REMARK,
+        self::PROJECT,
+        self::STATUS,
         self::CREATED_BY,
         self::MODIFY_BY,
-
     ];
     public function creator()
     {
@@ -32,12 +36,13 @@ class Project extends Model
     {
         return $this->belongsTo(User::class, 'modify_by');
     }
-    public function task()
+    public function project()
     {
-        return $this->hasMany(Task::class);
+        return $this->belongsTo(Project::class);
     }
-    public function users()
+
+    public function status()
     {
-        return $this->belongsToMany(User::class, 'user_projects');
+        return $this->belongsTo(Status::class);
     }
 }

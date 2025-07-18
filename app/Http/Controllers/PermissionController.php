@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller
@@ -13,7 +14,8 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::get();
-        return view('permission.index', compact('permissions'));
+        $roles = Role::with(Permission::TABLE_NAME)->get();
+        return view('permission.index', compact('permissions', 'roles'));
     }
 
     /**

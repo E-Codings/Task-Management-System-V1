@@ -6,7 +6,7 @@ use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class statusController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -97,9 +97,9 @@ class statusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        $deleteId = Status::findOrFail($id);
+        $deleteId = Status::findOrFail($request->remove_id);
         $deleteId->delete();
         return redirect()->route('index')->with('success', 'Status deleted successfully!');
     }

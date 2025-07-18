@@ -6,8 +6,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Auth\AuthenticationController;
-use App\Http\Controllers\statusController;
+use App\Models\User;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\TaskController;
 
 
 Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('login');

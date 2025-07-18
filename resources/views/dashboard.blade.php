@@ -29,7 +29,6 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <h5 class="card-title m-0 me-2">Total Task Management</h5>
                         </div>
-
                     </div>
                     <div class="card-body pt-lg-10">
                         <div class="row g-6">
