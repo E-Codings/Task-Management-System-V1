@@ -19,12 +19,10 @@ return new class extends Migration
             $table->unsignedBigInteger(Status::CREATED_BY); // FK: created_by
             $table->unsignedBigInteger(Status::MODIFY_BY);  // FK: modify_by
             $table->text(Status::REMARK)->nullable();  // Remark
-            $table->timestamp(Status::CREATED_AT)->nullable();
-            $table->timestamp(Status::UPDATED_AT)->nullable();
 
             // Foreign keys
-            $table->foreign(Status::CREATED_BY)->references(User::ID)->on(User::TABLE_NAME);
-            $table->foreign(Status::MODIFY_BY)->references(User::ID)->on(User::TABLE_NAME);
+            $table->foreign(Status::CREATED_BY)->references(User::ID)->on(User::TABLE_NAME)->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign(Status::MODIFY_BY)->references(User::ID)->on(User::TABLE_NAME)->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

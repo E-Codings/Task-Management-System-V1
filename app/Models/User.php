@@ -63,6 +63,8 @@ class User extends Authenticatable
         ];
     }
 
+    
+
     public function fullName(): string
     {
         return ($this->gender == 'Male' ? 'Mr.' : 'Ms.') . $this->first_name . ' ' . $this->lastName;
