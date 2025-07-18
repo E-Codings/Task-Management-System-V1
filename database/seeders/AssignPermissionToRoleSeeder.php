@@ -25,5 +25,14 @@ class AssignPermissionToRoleSeeder extends Seeder
         $employee->givePermissionTo(PermissionConstant::VIEW_PROJECT);
         $employee->givePermissionTo(PermissionConstant::EDIT_PROJECT);
 
+        $admin->givePermissionTo(PermissionConstant::VIEW_TASK);
+        $admin->givePermissionTo(PermissionConstant::CREATE_TASK);
+        $admin->givePermissionTo(PermissionConstant::EDIT_TASK);
+        $admin->givePermissionTo(PermissionConstant::REMOVE_TASK);
+
+        $employee->givePermissionTo(PermissionConstant::VIEW_TASK);
+        $employee->givePermissionTo(PermissionConstant::CREATE_TASK);
+        $employee->givePermissionTo(PermissionConstant::EDIT_TASK);
+
     }
 }
