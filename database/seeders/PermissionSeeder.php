@@ -18,5 +18,12 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => PermissionConstant::CREATE_PROJECT, 'guard_name' => 'web']);
         Permission::firstOrCreate(['name' => PermissionConstant::EDIT_PROJECT, 'guard_name' => 'web']);
         Permission::firstOrCreate(['name' => PermissionConstant::REMOVE_PROJECT, 'guard_name' => 'web']);
+
+        Permission::firstOrCreate(['name' => PermissionConstant::VIEW_TASK, 'guard_name' => 'web']);
+        Permission::firstOrCreate(['name' => PermissionConstant::CREATE_TASK, 'guard_name' => 'web']);
+        Permission::firstOrCreate(['name' => PermissionConstant::EDIT_TASK, 'guard_name' => 'web']);
+        Permission::firstOrCreate(['name' => PermissionConstant::REMOVE_TASK, 'guard_name' => 'web']);
+
+
     }
 }

@@ -69,7 +69,7 @@ class UserController extends Controller
             User::PROFILE    => $profileName,
         ]);
 
-        $user->assignRole('admin');
+        $user->assignRole('employee');
         return back()->with('success', 'User Create Successfully');
     }
 
