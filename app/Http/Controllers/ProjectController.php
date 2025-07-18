@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\User;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +39,7 @@ class ProjectController extends Controller
 
         $total_pages = ceil($count / 5);
 
+
         return view('project.index', compact('projects', 'total_pages', 'page', 'search'));
     }
 
@@ -51,7 +52,8 @@ class ProjectController extends Controller
         if (!Auth::user()->can(PermissionConstant::CREATE_PROJECT)) {
             return back()->with('error', 'Permission Denied');
         }
-        return view('project.create');
+        $users = User::all();
+        return view('project.create', compact('users'));
     }
 
     /**
@@ -61,8 +63,11 @@ class ProjectController extends Controller
     {
         $validator = Validator::make($request->all(), [
             Project::NAME => 'required|max:200',
-            Project::REMARK => 'nullable'
+            Project::REMARK => 'nullable',
+            User::USERS => 'nullable|array',
+            User::USERS_DOT_WILDCARD => 'exists:' . User::TABLE_NAME . ',' . User::ID,
         ]);
+
         if ($validator->fails()) {
             $errors  = $validator->errors();
             $message = implode(", ", $errors->all());
@@ -74,7 +79,13 @@ class ProjectController extends Controller
             Project::CREATED_BY => Auth::user()->id,
             Project::MODIFY_BY => Auth::user()->id
         ]);
-        return redirect()->route('project.index')->with('success', 'Project Created.');
+        $validated = $validator->validated();
+        // Attach selected users to project
+        if (!empty($validated['users'])) {
+            $project->users()->attach($validated['users']);
+        }
+
+        return redirect()->route('project.index')->with('success', 'Project Created and users assigned/');
     }
 
     /**
@@ -93,7 +104,8 @@ class ProjectController extends Controller
         if (!Auth::user()->can(PermissionConstant::EDIT_PROJECT)) {
             return back()->with('error', 'Permission Denied');
         }
-        return view('project.edit', compact('project'));
+        $users = User::all();
+        return view('project.edit', compact('project', 'users'));
     }
 
     /**
@@ -106,7 +118,9 @@ class ProjectController extends Controller
         }
         $validator = Validator::make($request->all(), [
             Project::NAME => 'required|max:200',
-            Project::REMARK => 'nullable'
+            Project::REMARK => 'nullable',
+            User::USERS => 'nullable|array',
+            User::USERS_DOT_WILDCARD => 'exists:' . User::TABLE_NAME . ',' . User::ID,
         ]);
         // $request->validate([
         //     Project::NAME => 'required|max:200',
@@ -122,6 +136,8 @@ class ProjectController extends Controller
             Project::REMARK => $request->remark,
             Project::MODIFY_BY => Auth::user()->id
         ]);
+        $validated = $validator->validated();
+        $project->users()->sync($validated['users'] ?? []);
         return redirect()->route('project.index')->with('success', 'Project Updated.');
     }
 

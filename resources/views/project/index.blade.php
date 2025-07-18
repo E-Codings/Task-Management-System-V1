@@ -93,17 +93,15 @@
                 </div>
                 @if (isset($project) && count($projects) > 0)
                     <div class="modal-body">
-                        <form action="{{ route('project.destroy', $project->id) }}" method="POSt">
+                        <form id="remove-form" method="POST">
                             @method('DELETE')
                             @csrf
                             <label for="">
-                                <h3>Do u want to remove this project ?</h3>
+                                <h3>Do you want to remove this project?</h3>
                             </label>
-                            <input type="hidden" id="remove-id" name="remove_id">
                             <br>
                             <button class="btn btn-success" type="button" data-bs-dismiss="modal">NO</button>
                             <button class="btn btn-danger">Yes</button>
-
                         </form>
                     </div>
                 @else
@@ -122,10 +120,10 @@
 @push('script-path')
     <script>
         $(document).on('click', '#btn-remove', function() {
+            const id = $(this).data('remove-id');
+            const actionUrl = "{{ url('project') }}/" + id;
 
-            var id = $(this).data('remove-id');
-            $('#remove-id').val(id);
-
-        })
+            $('#remove-form').attr('action', actionUrl);
+        });
     </script>
 @endpush

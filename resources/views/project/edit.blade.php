@@ -11,6 +11,17 @@
             <label for="Remark">Remark</label>
             <textarea name="remark" id="" cols="20" rows="4" class="form-control">{{ $project->remark }}</textarea>
         </div>
+        <div class="mb-3">
+            <label for="users">Assign Users:</label>
+            <select name="users[]" multiple class="form-control">
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}" {{ $project->users->contains($user->id) ? 'selected' : '' }}>
+                        {{ $user->fullName() }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="d-flex justify-content-end">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                 Close
