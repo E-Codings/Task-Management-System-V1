@@ -13,7 +13,7 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles;
 
-    const TABLE_NAME = 'users';
+    const TABLE_NAME = 'users';           // For DB usage like Schema or Eloquent
     const ID = 'id';
     const FIRST_NAME = 'first_name';
     const LAST_NAME = 'last_name';
@@ -23,7 +23,8 @@ class User extends Authenticatable
     const PASSWORD = 'password';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-
+    const USERS = 'users';                // For request form field: <select name="users[]">
+    const USERS_DOT_WILDCARD = 'users.*'; // For validation
 
     /**
      * The attributes that are mass assignable.
@@ -62,7 +63,12 @@ class User extends Authenticatable
         ];
     }
 
-    public function fullName(): string{
-        return ($this->gender == 'Male' ? 'Mr.' : 'Ms.').$this->first_name.' '.$this->lastName;
+    public function fullName(): string
+    {
+        return ($this->gender == 'Male' ? 'Mr.' : 'Ms.') . $this->first_name . ' ' . $this->lastName;
+    }
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'user_projects');
     }
 }

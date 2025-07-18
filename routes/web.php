@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\ProjectController;
 
+
 Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login.submit');
 
@@ -23,7 +24,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('project', ProjectController::class);
 });
-
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/status', [statusController::class, 'index'])->name('index');
     Route::get('/create', [statusController::class, 'create'])->name('create');
@@ -32,7 +32,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/update/{id}', [statusController::class, 'update'])->name('update');
     Route::get('/delete/{id}', [statusController::class, 'delete'])->name('delete'); // confirmation page
     Route::delete('/status/{id}', [StatusController::class, 'destroy'])->name('destroy');   // delete action
-
 });
 //if declare outside middleware
 //Route::resource('project',ProjectController::class)->middleware('auth');
