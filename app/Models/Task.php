@@ -12,12 +12,12 @@ class Task extends Model
     const TITLE = 'title';
     const DURATION = 'duration';
     const REMARK = 'remark';
-    const PROJECT = 'project'; //project_id
+    const PROJECT = 'project_id'; //project_id
     const CREATED_BY = 'created_by';
     const MODIFY_BY = 'modify_by';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-    const STATUS = 'status';
+    const STATUS = 'status_id';
 
     protected $fillable = [
         self::TITLE,
@@ -38,11 +38,11 @@ class Task extends Model
     }
     public function project()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(Project::class, 'project_id');
     }
 
     public function status()
     {
-        return $this->belongsTo(Status::class);
+        return $this->belongsTo(Status::class,'status_id');
     }
 }
