@@ -65,11 +65,11 @@
                                                 data-url="{{ route('task.edit', $task->id) }}" id="btn-open-create"
                                                 data-modal-title="Edit course Form"
                                                 data-id="{{ $task->id }}">Update</button>
-                                            {{-- @can(['REMOVE_PROJECT']) --}}
+                                            @can(['remove task'])
                                                 <button class="btn btn-danger" id="btn-remove"
                                                 data-remove-id="{{ $task->id }}" data-bs-toggle="modal"
                                                 data-bs-target="#removeModal">Delete</button>
-                                            {{-- @endcan --}}
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach
