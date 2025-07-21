@@ -27,9 +27,10 @@
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     {{-- tinymce --}}
-    <script src="https://cdn.tiny.cloud/1/0scbrl97i5yro3de3jucxc5stxnsjs8o3ac0hhwp2lhylckh/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/0scbrl97i5yro3de3jucxc5stxnsjs8o3ac0hhwp2lhylckh/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
-</script>
+    </script>
 </head>
 
 <body>
@@ -95,12 +96,21 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
-                        <a href="{{ route('user.index') }}" class="menu-link">
-                            <i class="menu-icon icon-base ri ri-account-box-2-line"></i>
-                            <div>Users</div>
-                        </a>
-                    </li>
+                    {{-- profile for user --}}
+                        <li class="menu-item">
+                            <a href="{{ route('user.profile') }}" class="menu-link">
+                                <i class="menu-icon icon-base ri ri-account-box-2-line"></i>
+                                <div>Profile</div>
+                            </a>
+                        </li>
+                    @can(["view user", "create user", "edit user", "remove user"])
+                        <li class="menu-item">
+                            <a href="{{ route('user.index') }}" class="menu-link">
+                                <i class="menu-icon icon-base ri ri-account-box-2-line"></i>
+                                <div>Users</div>
+                            </a>
+                        </li>
+                    @endcan
                     <li class="menu-item">
                         {{-- <a href="{{ route('status.index') }}" class="menu-link"> --}}
                         <a href="/status" class="menu-link">
@@ -144,7 +154,7 @@
                                 <a class="nav-link dropdown-toggle hide-arrow p-0" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ Auth::user()->profile ? Auth::user()->profile : asset('assets/img/avatars/1.png') }}"
+                                        <img src="{{ Auth::user()->profile ? asset('assets/img/profile/' . Auth::user()->profile) : asset('assets/img/avatars/1.png') }}"
                                             alt="alt" class="rounded-circle" />
                                     </div>
                                 </a>
@@ -154,7 +164,7 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="{{ Auth::user()->profile ? Auth::user()->profile : asset('assets/img/avatars/1.png') }}"
+                                                        <img src="{{ Auth::user()->profile ? asset('assets/img/profile/' . Auth::user()->profile) : asset('assets/img/avatars/1.png') }}"
                                                             alt="alt" class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>

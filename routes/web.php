@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\ProfileUerController;
 use App\Models\User;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StatusController;
@@ -39,5 +40,6 @@ Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::delete('/user/delete', 'destroy')->name('user.delete');
     });
+    Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
 });
 
