@@ -13,4 +13,10 @@ class PermissionConstant
     public const CREATE_TASK = 'create task';
     public const EDIT_TASK = 'edit task';
     public const REMOVE_TASK = 'remove task';
+
+    public const VIEW_USER = 'view user';
+    public const CREATE_USER = 'create user';
+    public const EDIT_USER = 'edit user';
+    public const REMOVE_USER = 'remove user';
+    public const PROFILE_USER = 'profile user';
 }

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use App\Constants\PermissionConstant;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Support\Facades\File;
 
 
 class UserController extends Controller
@@ -15,10 +17,44 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::get();
-        return view('user.index', compact('users'));
+        // This method is only for admin
+        if (!Auth::user()->can(PermissionConstant::VIEW_USER)) {
+            return back()->with('error', 'Permission Denied');
+        }
+
+        $search = $request->search;
+        $page = $request->page ?? 1;
+        $limit = 5;
+        $offset = ($page - 1) * $limit;
+
+        $query = User::orderBy('id', 'desc');
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where(User::FIRST_NAME, 'like', "%{$search}%")
+                    ->orWhere(User::LAST_NAME, 'like', "%{$search}%");
+            });
+        }
+
+        $total_users = $query->count();
+        $total_pages = ceil($total_users / $limit);
+        $users = $query->offset($offset)->limit($limit)->get();
+
+        return view('user.index', compact('users', 'total_pages', 'page', 'search'));
+    }
+
+    /**
+     * Show the Proflie form for user as employee only view
+     */
+    public function profile()
+    {
+        if (Auth::user()->hasRole('admin')) {
+            return back()->with('error', 'Permission Denied');
+        }else{
+            return view('user.profile', compact('user'));
+        }
     }
 
     /**
@@ -26,7 +62,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        if (!Auth::user()->hasRole('admin')) {
+            return back()->with('error', 'Permission Denied');
+        } else {
+            return view('user.create');
+        }
     }
 
     /**

@@ -84,6 +84,7 @@ function configTinymce() {
     });
 }
 
+// Search and pagination handling
 const urlParams = new URLSearchParams(window.location.search);
 const search = urlParams.get("search");
 if (search) {
@@ -93,12 +94,10 @@ if (search) {
 const page = urlParams.get("page");
 if (page) {
     let btnPage = $(".btn-page");
-    // console.log(btnPage);
 }
 $(document).on("click", "#btn-page", function () {
     let pageNumber = $(this).data("page-number");
     let url = window.location.origin + window.location.pathname;
-    console.log(url);
 
     if (search) {
         url = url + "?search=" + search;
@@ -108,3 +107,5 @@ $(document).on("click", "#btn-page", function () {
     fullUrl.searchParams.append("page", pageNumber);
     window.location.href = fullUrl;
 });
+
+
