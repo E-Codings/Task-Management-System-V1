@@ -11,7 +11,7 @@
 
         <div class="col mb-6 mt-2">
             <div class="form-floating form-floating-outline">
-                <input type="time" name="duration" id="durationBasic" class="form-control" placeholder="Enter Duration" />
+                <input type="text" name="duration" id="durationBasic" class="form-control" placeholder="Enter Duration" />
                 <label for="durationBasic">Duration</label>
             </div>
         </div>
@@ -22,9 +22,9 @@
             <div class="form-floating form-floating-outline">
                 <select name="project" id="projectBasic" class="form-select">
                     <option value="">Select Project</option>
-                    {{-- @foreach ($projects as $project)
+                    @foreach ($projects as $project)
                         <option value="{{$project->id}}">{{$project->name}}</option>
-                    @endforeach --}}
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -35,9 +35,9 @@
             <div class="form-floating form-floating-outline">
                 <select name="status" id="statusBasic" class="form-select">
                     <option value="">Select Status</option>
-                    {{-- @foreach ($statuss as $status)
+                    @foreach ($statuss as $status)
                         <option value="{{$status->id}}">{{$status->name}}</option>
-                    @endforeach --}}
+                    @endforeach
                 </select>
             </div>
         </div>

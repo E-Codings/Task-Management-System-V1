@@ -6,8 +6,20 @@
                 <div class="card overflow-hidden">
                     <div class="card-title p-2">
                         <h3>User Account Information</h3>
-                        <a href="#" data-url="{{ route('user.create') }}" data-modal-title="Create User"
-                            class="btn btn-primary open-modal">Create User</a>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="#" data-url="{{ route('user.create') }}" data-modal-title="Create User"
+                                class="btn btn-primary open-modal">Create User</a>
+                            {{-- Search Users --}}
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <form action="{{ route('user.index') }}" method="GET"
+                                    class="d-flex align-items-center gap-2">
+                                    <input type="text" name="search" placeholder="Search..." class="form-control p-3"
+                                        value="{{ request('search') }}">
+                                    <button type="submit" class="btn btn-outline-primary">Search</button>
+                                    <a href="{{ route('user.index') }}" class="btn btn-outline-secondary">Clear</a>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-sm">
@@ -28,7 +40,8 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>
                                             <img class="rounded-circle" style="width:70px;"
-                                                src="{{ asset('assets/img/profile/' . $user->profile) }}" alt="">
+                                                src="{{ $user->profile ? asset('assets/img/profile/' . $user->profile) : asset('assets/img/avatars/1.png') }}"
+                                                alt="">
                                         </td>
                                         <td>{{ $user->fullName() }}</td>
                                         <td>{{ $user->email }}</td>
@@ -46,6 +59,16 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="d-flex col-12 justify-content-end">
+                                            @for ($i = 1; $i <= $total_pages; $i++)
+                                                <button id="btn-page" data-page-number="{{ $i }}"
+                                                    class="btn btn-primary btn-page p-2 me-2">{{ $i }}</button>
+                                            @endfor
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -121,10 +144,23 @@
             });
         });
     </script>
-    <script>
+    {{-- <script>
         $(document).on('click', '#btn-remove', function() {
             var id = $(this).data('remove-id');
             $('#remove-id').val(id);
         });
+    </script> --}}
+
+    <script>
+        $(document).on('click', '#btn-remove', function() {
+
+            var id = $(this).data('remove-id');
+            const urlParams = new URLSearchParams(window.location.search);
+            const search = urlParams.get('search');
+            const pageNumber = urlParams.get('page')
+            $('#remove-id').val(id)
+            $('#search').val(search)
+            $('#page').val(page)
+        })
     </script>
 @endpush

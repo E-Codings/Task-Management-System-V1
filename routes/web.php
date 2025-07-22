@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\ProfileUerController;
 use App\Models\User;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StatusController;
@@ -23,6 +24,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/change-password', [AuthenticationController::class, 'changePassword'])->name('change-password');
     Route::get('/role-permission', [PermissionController::class, 'index'])->name('role.permission');
 
+    Route::resource('user', UserController::class);
+    Route::resource('project', ProjectController::class);
+    Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+});
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/status', [statusController::class, 'index'])->name('index');
     Route::get('/create', [statusController::class, 'create'])->name('create');
     Route::post('/status/store-status', [statusController::class, 'store'])->name('store');
@@ -43,5 +49,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/system', [SystemController::class, 'create'])->name('system.create');
     Route::post('/system', [SystemController::class, 'store'])->name('system.store');
+    Route::get('/delete/{id}', [statusController::class, 'delete'])->name('delete'); // confirmation page
+    Route::delete('/status/{id}', [StatusController::class, 'destroy'])->name('destroy');   // delete action
 });
 

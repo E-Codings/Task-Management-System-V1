@@ -66,22 +66,46 @@ $(document).on("click", ".open-modal", function () {
         success: function (res) {
             $("#basicModal").find(".modal-body").html(res);
             configTinymce();
-        }
+        },
     });
 });
 
-function configTinymce(){
+function configTinymce() {
     //tinymce
-    tinymce.remove('textarea');
+    tinymce.remove("textarea");
     tinymce.init({
-        selector: 'textarea',
-        theme: 'silver',
+        selector: "textarea",
+        theme: "silver",
         menubar: false,
-        plugins: 'lists link image code',
-        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | code',
-        height: 300
+        plugins: "lists link image code",
+        toolbar:
+            "undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | code",
+        height: 300,
     });
 }
 
+// Search and pagination handling
+const urlParams = new URLSearchParams(window.location.search);
+const search = urlParams.get("search");
+if (search) {
+    $("#search_txt").val(search);
+}
+
+const page = urlParams.get("page");
+if (page) {
+    let btnPage = $(".btn-page");
+}
+$(document).on("click", "#btn-page", function () {
+    let pageNumber = $(this).data("page-number");
+    let url = window.location.origin + window.location.pathname;
+
+    if (search) {
+        url = url + "?search=" + search;
+    }
+
+    var fullUrl = new URL(url);
+    fullUrl.searchParams.append("page", pageNumber);
+    window.location.href = fullUrl;
+});
 
 
