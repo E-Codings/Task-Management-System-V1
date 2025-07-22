@@ -64,9 +64,9 @@
                 <div class="app-brand demo">
                     <a href="/" class="app-brand-link">
                         <span class="app-brand-logo demo me-1">
-
+                            <img src="{{asset('assets/img/system/'.$System->profile)}}" width="40px">
                         </span>
-                        <span class="app-brand-text demo menu-text fw-semibold ms-2">Materio</span>
+                        <span class="app-brand-text demo menu-text fw-semibold ms-2">{{$System->name}}</span>
                     </a>
 
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">

@@ -20,18 +20,18 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call([
-            PermissionSeeder::class,
-            RoleSeeder::class,
-            AssignPermissionToRoleSeeder::class,
-        ]);
-        Status::factory()->create([
-            Status::NAME => 'Pending',
-            Status::CREATED_BY => 1,
-            Status::MODIFY_BY => 1,
-            Status::REMARK => 'This is a test status.',
-            Status::CREATED_AT => now(),
-            Status::UPDATED_AT => now(),
-        ]);
+//        $this->call([
+//            PermissionSeeder::class,
+//            RoleSeeder::class,
+//            AssignPermissionToRoleSeeder::class,
+//        ]);
+//        Status::factory()->create([
+//            Status::NAME => 'Pending',
+//            Status::CREATED_BY => 1,
+//            Status::MODIFY_BY => 1,
+//            Status::REMARK => 'This is a test status.',
+//            Status::CREATED_AT => now(),
+//            Status::UPDATED_AT => now(),
+//        ]);
     }
 }

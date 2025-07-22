@@ -64,7 +64,7 @@ class TaskController extends Controller
         if ($validator->fails()) {
             $errors = $validator->messages();
             $messsage = implode(", ", $errors->all());
-            return back()->with("Error", $messsage);
+            return back()->with("error", $messsage);
         }
 
         Task::create([

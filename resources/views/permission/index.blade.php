@@ -34,9 +34,9 @@
                                 </div>
                             </div>
                         @endforeach
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" id="btn-save-permission" class="btn btn-primary">Save </button>
-                        </div>
+{{--                        <div class="d-flex justify-content-end">--}}
+{{--                            <button type="submit" id="btn-save-permission" class="btn btn-primary">Save </button>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>
