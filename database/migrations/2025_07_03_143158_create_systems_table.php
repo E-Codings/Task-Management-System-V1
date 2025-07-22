@@ -12,16 +12,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(System::TABLE, function (Blueprint $table) {
-            $table->id();
-            $table->string(System::NAME);
-            $table->string(System::PROFILE);
-            $table->string(System::FAVICON);
-            $table->timestamps();
-        });
+        if(!Schema::hasTable(System::TABLE)){
+            Schema::create(System::TABLE, function (Blueprint $table) {
+                $table->id();
+                $table->string(System::NAME);
+                $table->string(System::PROFILE)->nullable();
+                $table->string(System::FAVICON)->nullable();
+                $table->timestamps();
+            });
+        }
 
         if(Schema::hasTable(System::TABLE)){
-            
+            System::create([
+               'name' => 'E-Coding',
+            ]);
         }
     }
 

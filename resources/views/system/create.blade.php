@@ -11,27 +11,27 @@
                             <div class="col-12">
                                 <div class="form-floating form-floating-outline mb-6">
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Your system name" />
+                                        placeholder="Your system name" value="{{$system->name}}" />
                                     <label for="name">System Name</label>
                                     @error('name') <span class="text-danger" style="font-size: 12px"> {{$message}} </span> @enderror
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-floating form-floating-outline mb-6">
-                                    <input type="file" class="form-control" id="profile" name="profile" />
+                                    <input type="file" class="form-control" id="profile" data-hidden="profile_name" data-show-image="profile_image" name="profile" />
                                     <label for="profile">Profile</label>
                                     @error('profile') <span class="text-danger" style="font-size: 12px"> {{$message}} </span> @enderror
-                                    <img src="{{asset('assets/img/placeholder.jpg')}}" alt="" width="200px" class="mt-2 cursor-pointer">
-                                    <input type="text" name="profile_name" id="">
+                                    <img src="{{asset($system->profile == null ? 'assets/img/placeholder.jpg' : 'assets/img/system/'.$system->profile)}}" data-target-file="profile" alt="" id="profile_image" width="200px" class="mt-2 cursor-pointer preview-profile">
+                                    <input type="text" value="{{asset($system->profile == null ? 'assets/img/placeholder.jpg' : 'assets/img/system/'.$system->profile)}}" name="profile_name" id="profile_name">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-floating form-floating-outline mb-6">
-                                    <input type="file" class="form-control" id="favicon" name="profile" />
+                                    <input type="file" class="form-control" id="favicon" data-hidden="favicon_name" data-show-image="favicon_image" name="favicon" />
                                     <label for="favicon">Favicon</label>
                                     @error('favicon') <span class="text-danger" style="font-size: 12px"> {{$message}} </span> @enderror
-                                    <img src="{{asset('assets/img/placeholder.jpg')}}" alt="" width="200px" class="mt-2 cursor-pointer">
-                                    <input type="text" name="favicon_name" id="">
+                                    <img src="{{asset($system->favicon == null ? 'assets/img/placeholder.jpg' : 'assets/img/favicon/favicon.ico')}}" alt="" data-target-file="favicon" id="favicon_image" width="200px" class="mt-2 cursor-pointer preview-profile">
+                                    <input type="text" value="{{asset($system->favicon == null ? '' : 'assets/img/favicon/favicon.ico')}}" name="favicon_name" id="favicon_name">
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-end">

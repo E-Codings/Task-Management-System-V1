@@ -14,7 +14,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}?v={{ time() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -121,6 +121,12 @@
                         <a href="{{ route('task.index') }}" class="menu-link">
                             <i class="menu-icon icon-base bi bi-journal-text"></i>
                             <div>Tasks</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('system.create') }}" class="menu-link">
+                            <i class="menu-icon icon-base bi bi-journal-text"></i>
+                            <div>System</div>
                         </a>
                     </li>
                 </ul>
@@ -253,6 +259,41 @@
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script>
+        $(document).on('click', '.preview-profile', function() {
+            $('#'+$(this).data('target-file')).click();
+        });
+        $(document).on('change', '#profile, #favicon', function() {
+            var formData = new FormData();
+            var profile = $(this)[0].files[0];
+            var hiddenId = $(this).data('hidden');
+            var showImage = $(this).data('show-image');
+
+            formData.append($(this).id, profile)
+
+            $.ajax({
+                url: "{{ route('uploadFile') }}",
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                caches: false,
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function(response) {
+
+                    $('#'+showImage).attr('src', response);
+
+                    $('#'+hiddenId).val(response);
+                },
+                error: function(xhr) {
+                    console.error("Error:", xhr
+                        .responseText);
+                },
+            })
+        });
+    </script>
     @stack('script-path')
 
 </body>

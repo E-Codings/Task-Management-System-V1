@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SystemController;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -39,5 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::delete('/user/delete', 'destroy')->name('user.delete');
     });
+
+    Route::get('/system', [SystemController::class, 'create'])->name('system.create');
+    Route::post('/system', [SystemController::class, 'store'])->name('system.store');
 });
 
